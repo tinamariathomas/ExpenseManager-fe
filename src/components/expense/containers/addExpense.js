@@ -2,34 +2,45 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addExpense } from './../../../actions/expense';
+import { Button, FormControl, FormGroup } from 'react-bootstrap';
 
+class AddExpense extends React.Component {
+  constructor({dispatch}) {
+    super();
+    this.dispatch = dispatch;
+    this.state = {value: ''};
+  }
 
-let AddExpense = ({dispatch}) => {
-  let input;
-return (<div>
-    <form
-      onSubmit={e => {
-        e.preventDefault()
-        if (!input.value.trim()) {
-          return
-        }
-        dispatch(addExpense(input.value));
-        input.value = ''
-      }}
-    >
-      <input
-        ref={node => {
-          input = node
-        }}
-      />
-      <button type="submit">
-        Add Todo
-      </button>
-    </form>
-  </div>
-);
-};
+  handleChange(event) {
+    event.preventDefault();
+    this.setState({value: event.target.value});
+  };
 
-AddExpense = connect()(AddExpense)
+  handleSubmit(event) {
+    event.preventDefault();
+    this.dispatch(addExpense(this.state.value))
+  }
+
+  render() {
+    return (<div>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <FormGroup>
+            <FormControl
+              type="text"
+              value={this.state.value}
+              placeholder="Enter expense"
+              onChange={this.handleChange.bind(this)}
+            />
+            <Button type="submit">
+              Add Expense
+            </Button>
+          </FormGroup>
+        </form>
+      </div>
+    );
+  }
+}
+
+AddExpense = connect()(AddExpense);
 
 export default AddExpense
