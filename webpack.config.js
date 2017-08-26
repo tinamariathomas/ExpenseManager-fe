@@ -3,7 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/main.js',
   output: {
-    filename: 'bundle.js'
+    filename: 'build/bundle.js'
   },
   module : {
     loaders: [
@@ -15,6 +15,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.ejs',
       inject: 'body',
+      filename: 'build/index.html'
     })
   ]
 }
