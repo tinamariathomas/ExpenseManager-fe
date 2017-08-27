@@ -18,7 +18,8 @@ class AddExpense extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.dispatch(addExpense(this.state.value))
+    this.dispatch(addExpense(this.state.value));
+    this.setState({value:''});
   }
 
   render() {
