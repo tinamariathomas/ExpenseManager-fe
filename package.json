@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "live" : "webpack-dev-server --content-base build"
+    "live": "webpack-dev-server --content-base build"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.5",
     "html-webpack-plugin": "^2.30.1",
+    "react-bootstrap-table": "^4.0.2",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"

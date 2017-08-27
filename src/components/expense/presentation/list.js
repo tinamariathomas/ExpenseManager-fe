@@ -1,12 +1,16 @@
 import React from 'react';
-import ExpenseItem from './item';
-
+import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 export default class ExpenseList extends React.Component {
   render() {
     return (this.displayItems());
   }
   displayItems(){
-    const items = this.props.expenses.map(expense => <ExpenseItem text={expense.description}/>);
-    return <ul>{items}</ul>;
+    console.log("props", this.props.expenses);
+    const data = this.props.expenses.map(expense => {return {desc: expense.description}});
+    console.log("data", data)
+
+    return (<BootstrapTable data={data}>
+      <TableHeaderColumn isKey dataField='desc'>Description</TableHeaderColumn>
+      </BootstrapTable>);
   }
 }

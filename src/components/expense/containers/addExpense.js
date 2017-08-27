@@ -2,40 +2,33 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addExpense } from './../../../actions/expense';
-import { Button, FormControl, FormGroup } from 'react-bootstrap';
+import { Button, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
 class AddExpense extends React.Component {
   constructor({dispatch}) {
     super();
     this.dispatch = dispatch;
-    this.state = {value: ''};
   }
-
-  handleChange(event) {
-    event.preventDefault();
-    this.setState({value: event.target.value});
-  };
 
   handleSubmit(event) {
     event.preventDefault();
-    this.dispatch(addExpense(this.state.value));
-    this.setState({value:''});
+    this.dispatch(addExpense(event.target.description.value));
+    event.target.description.value = '';
   }
 
   render() {
     return (<div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <FormGroup>
+          <FormGroup controlId="description">
+            <ControlLabel>Description</ControlLabel>
             <FormControl
               type="text"
-              value={this.state.value}
               placeholder="Enter expense"
-              onChange={this.handleChange.bind(this)}
             />
-            <Button type="submit">
+          </FormGroup>
+            <Button type  ="submit">
               Add Expense
             </Button>
-          </FormGroup>
         </form>
       </div>
     );
