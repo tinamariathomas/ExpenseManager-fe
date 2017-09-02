@@ -9,23 +9,35 @@ class AddExpense extends React.Component {
     super();
     this.dispatch = dispatch;
   }
+  formGroup(controlID, label, type, placeholder){
+    return(
+      <FormGroup controlId={controlID}>
+        <ControlLabel>{label}</ControlLabel>
+        <FormControl
+          type={type}
+          placeholder={placeholder}
+        />
+      </FormGroup>);
+  }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.dispatch(addExpense(event.target.description.value));
+    this.dispatch(addExpense({
+      description: event.target.description.value,
+      amount: event.target.amount.value,
+      count: event.target.count.value,
+    }));
     event.target.description.value = '';
+    event.target.amount.value = '';
+    event.target.count.value = '';
   }
 
   render() {
     return (<div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <FormGroup controlId="description">
-            <ControlLabel>Description</ControlLabel>
-            <FormControl
-              type="text"
-              placeholder="Enter expense"
-            />
-          </FormGroup>
+          {this.formGroup('description', 'Description','text', 'Enter Description')}
+          {this.formGroup('amount', 'Amount','text', 'Enter Description')}
+          {this.formGroup('count', 'Count','text', 'Enter Count')}
             <Button type  ="submit">
               Add Expense
             </Button>
