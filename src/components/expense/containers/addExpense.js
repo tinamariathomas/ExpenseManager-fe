@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react';
 
 import { addExpense } from './../../../actions/expense';
+import { closeAddExpenseModal } from './../../../actions/expenseModal';
 
 class AddExpense extends React.Component {
   constructor({dispatch}) {
@@ -11,15 +12,13 @@ class AddExpense extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event, data) {
+  handleSubmit(event) {
     this.dispatch(addExpense({
       description: event.target.description.value,
       amount: event.target.amount.value,
       count: event.target.count.value,
     }));
-    event.target.description.value = '';
-    event.target.amount.value = '';
-    event.target.count.value = '';
+    this.dispatch(closeAddExpenseModal());
   }
 
   render() {

@@ -1,7 +1,8 @@
 import React from 'react';
 import ExpenseList from './expense/containers/list';
-import AddExpense from './expense/containers/addExpense';
-import { Grid, Header } from 'semantic-ui-react'
+import AddExpenseButton from './expense/containers/addExpenseButton';
+import AddExpenseModal from './expense/containers/addExpenseModal';
+import { Grid, Header, Button } from 'semantic-ui-react'
 
 export default class Wrapper extends React.Component {
   render() {
@@ -16,7 +17,8 @@ export default class Wrapper extends React.Component {
           <Grid.Column>
             </Grid.Column>
           <Grid.Column>
-            <AddExpense/>
+            <AddExpenseButton/>
+            <AddExpenseModal/>
             <ExpenseList/>
           </Grid.Column>
           <Grid.Column>

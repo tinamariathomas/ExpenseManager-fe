@@ -5,7 +5,10 @@ import { Provider } from 'react-redux';
 import reducers from './reducers/expense';
 import { createStore } from 'redux';
 const intialState = {
-  expenses: [{description:'Pears', amount:'1', count:'46'}, {description:'Dove Shampoo', amount: '1', count:'180'}]
+  expenses: [
+    {description:'Pears', amount:'1', count:'46'}, {description:'Dove Shampoo', amount: '1', count:'180'}
+  ],
+  showAddExpenseModal: false,
 };
 
 let store = createStore(reducers, intialState)
